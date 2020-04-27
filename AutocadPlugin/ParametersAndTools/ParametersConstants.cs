@@ -81,8 +81,28 @@
         public const double PersonsHeightBedLengthDiff = 30;
 
         /// <summary>
+        ///     Минимальный рост человека
+        /// </summary>
+        public const double PersonsHeightMin = 90;
+
+        /// <summary>
+        ///     Максимальный рост человека
+        /// </summary>
+        public const double PersonsHeightMax = 200;
+
+        /// <summary>
         ///     Требуемая ширина кровати на одно спальное место
         /// </summary>
-        public const double BedWidthPerBerth = 80;
+        public const double BerthCountMin = 1;
+
+        /// <summary>
+        ///     Требуемая ширина кровати на одно спальное место
+        /// </summary>
+        public const double BerthCountMax = 2;
+
+        /// <summary>
+        ///     Требуемая ширина кровати на одно спальное место
+        /// </summary>
+        public const double BedWidthPerBerth = 60;
     }
 }

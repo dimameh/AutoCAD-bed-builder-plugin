@@ -38,6 +38,16 @@
         /// <summary>
         ///     Толщина спинки
         /// </summary>
-        HeadboardThickness
+        HeadboardThickness,
+
+        /// <summary>
+        /// Высота человека
+        /// </summary>
+        PersonsHeight,
+
+        /// <summary>
+        /// Количество спальных мест
+        /// </summary>
+        BerthCount
     }
 }

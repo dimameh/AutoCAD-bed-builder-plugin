@@ -69,6 +69,12 @@ namespace UI
                 new Parameter(ParametersConstants.HeadboardThicknessMin,
                     ParametersConstants.HeadboardThicknessMax);
 
+            var personsHeight = new Parameter(ParametersConstants.PersonsHeightMin,
+                ParametersConstants.PersonsHeightMax);
+
+            var berthCount = new Parameter(ParametersConstants.BerthCountMin,
+                ParametersConstants.BerthCountMax);
+
             _parameters.ModelParameters.Add(ParameterType.MainPartHeight, mainPartHeight);
             _parameters.ModelParameters.Add(ParameterType.MainPartWidth, mainPartWidth);
             _parameters.ModelParameters.Add(ParameterType.MainPartLength, mainPartLength);
@@ -79,6 +85,12 @@ namespace UI
 
             _parameters.ModelParameters.Add(ParameterType.HeadboardThickness,
                 headboardThickness);
+
+            _parameters.ModelParameters.Add(ParameterType.PersonsHeight,
+                personsHeight);
+
+            _parameters.ModelParameters.Add(ParameterType.BerthCount,
+                berthCount);
 
             _parameters.SetAverageParameters();
         }
@@ -95,33 +107,16 @@ namespace UI
             _fields.Add(ParameterType.LegsHeight, _legsHeightTextBox);
             _fields.Add(ParameterType.HeadboardHeight, _headboardHeightTextBox);
             _fields.Add(ParameterType.HeadboardThickness, _headboardThicknessTextBox);
+            _fields.Add(ParameterType.PersonsHeight, _personsHeightTextBox);
+            _fields.Add(ParameterType.BerthCount, _berthCountTextBox);
 
             foreach (var key in _fields.Keys)
             {
-                _fields[key].Text = _parameters.ModelParameters[key].Value
-                    .ToString(CultureInfo.InvariantCulture);
+                _fields[key].Text = _parameters.ModelParameters[key].Value.ToString(CultureInfo.InvariantCulture);
             }
 
             _personsHeightTextBox.TextChanged += PersonsHeightTextBox_TextChanged;
             _berthCountTextBox.TextChanged += BerthCountTextBox_TextChanged;
-        }
-
-        /// <summary>
-        ///     Инициализация последних значений полей ввода
-        /// </summary>
-        private void InitLastTextBoxValues()
-        {
-            _lastTextBoxValues.Add(_mainPartHeightTextBox, _mainPartHeightTextBox.Text);
-            _lastTextBoxValues.Add(_mainPartWidthTextBox, _mainPartWidthTextBox.Text);
-            _lastTextBoxValues.Add(_mainPartLengthTextBox, _mainPartLengthTextBox.Text);
-            _lastTextBoxValues.Add(_legsDiameterTextBox, _legsDiameterTextBox.Text);
-            _lastTextBoxValues.Add(_legsHeightTextBox, _legsHeightTextBox.Text);
-            _lastTextBoxValues.Add(_headboardHeightTextBox, _headboardHeightTextBox.Text);
-            _lastTextBoxValues.Add(_headboardThicknessTextBox,
-                _headboardThicknessTextBox.Text);
-
-            _lastTextBoxValues.Add(_personsHeightTextBox, _personsHeightTextBox.Text);
-            _lastTextBoxValues.Add(_berthCountTextBox, _berthCountTextBox.Text);
         }
 
         /// <summary>
@@ -131,7 +126,6 @@ namespace UI
         {
             InitParameters();
             InitFields();
-            InitLastTextBoxValues();
         }
 
         /// <summary>
@@ -219,6 +213,7 @@ namespace UI
             try
             {
                 FillParameters();
+                _parameters.ValidateParameters();
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -226,6 +221,11 @@ namespace UI
                     "Введенные параметры выходят за границы доступного диапазона значений",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                return;
+            }
+            catch (ArgumentException argumentException)
+            {
+                MessageBox.Show(argumentException.Message);
                 return;
             }
 
