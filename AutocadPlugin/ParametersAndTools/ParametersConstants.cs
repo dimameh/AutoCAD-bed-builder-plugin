@@ -91,6 +91,11 @@
         public const double PersonsHeightMax = 200;
 
         /// <summary>
+        ///     Средний рот человека
+        /// </summary>
+        public const double PersonsHeightAvg = 170;
+
+        /// <summary>
         ///     Требуемая ширина кровати на одно спальное место
         /// </summary>
         public const double BerthCountMin = 1;
@@ -99,7 +104,12 @@
         ///     Требуемая ширина кровати на одно спальное место
         /// </summary>
         public const double BerthCountMax = 2;
-
+        
+        /// <summary>
+        ///     Начальное значение количества спальных мест
+        /// </summary>
+        public const double BerthAvg = 1;
+        
         /// <summary>
         ///     Требуемая ширина кровати на одно спальное место
         /// </summary>

@@ -22,11 +22,11 @@ namespace ParametersAndTools
             {
                 if (key == ParameterType.BerthCount)
                 {
-                    ModelParameters[key].Value = 1;
+                    ModelParameters[key].Value = ParametersConstants.BerthAvg;
                 } 
                 else if (key == ParameterType.PersonsHeight)
                 {
-                    ModelParameters[key].Value = 170;
+                    ModelParameters[key].Value = ParametersConstants.PersonsHeightAvg;
                 }
                 else
                 {

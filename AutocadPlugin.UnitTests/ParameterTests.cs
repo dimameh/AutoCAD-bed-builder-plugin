@@ -12,7 +12,7 @@ namespace AutocadPlugin.UnitTests
     {
         [Test]
         [Description("Тест функции SetAverageValue")]
-        public async Task SetAverageValueTest() 
+        public void SetAverageValueTest() 
         {
             var parameter1 = new Parameter(0, 2);
             var parameter2 = new Parameter(100, 800);
@@ -42,13 +42,13 @@ namespace AutocadPlugin.UnitTests
             });
             
             //Значение ниже допустимого интервала
-            Assert.Throws<ArgumentException>(() =>
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 parameter2.Value = 1;
             });
 
             //Значение выше допустимого интервала
-            Assert.Throws<ArgumentException>(() => 
+            Assert.Throws<ArgumentOutOfRangeException>(() => 
             {
                 parameter3.Value = 8;
             });
