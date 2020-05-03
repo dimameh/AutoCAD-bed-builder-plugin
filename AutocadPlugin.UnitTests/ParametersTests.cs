@@ -121,6 +121,17 @@ namespace AutocadPlugin.UnitTests
         }
 
         [TestCase]
+        [Description("Тест функции ValidateParameters в случае корректных параметров")]
+        public void ValidateParametersTest() {
+            _parameters.SetAverageParameters();
+            _parameters.ModelParameters[ParameterType.MainPartLength].Value += 30;
+            Assert.DoesNotThrow(() =>
+            {
+                _parameters.ValidateParameters();
+            });
+        }
+
+        [TestCase]
         [Description("Тест функции ValidateParameters в случае если отстуствует один из требуемых параметров")]
         public void ValidateParametersNotEnoughtParametersTest()
         {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using AutocadPlugin.Drawer;
 using Autodesk.AutoCAD.ApplicationServices;
 using ModelController;
 using ParametersAndTools;
@@ -233,6 +235,27 @@ namespace UI
             Close();
         }
 
+
+        private void showButton_Click(object sender, EventArgs e) 
+        {
+            try {
+                FillParameters();
+                _parameters.ValidateParameters();
+            } catch (ArgumentOutOfRangeException exception) {
+                MessageBox.Show(
+                    "Введенные параметры выходят за границы доступного диапазона значений",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            } catch (ArgumentException argumentException) {
+                MessageBox.Show(argumentException.Message);
+                return;
+            }
+
+            var modelDrawer = new ModelDrawer(_parameters, picture);
+            modelDrawer.DrawPicture();
+        }
+
         #endregion
 
         #region Валидация
@@ -282,5 +305,6 @@ namespace UI
         }
 
         #endregion
+
     }
 }

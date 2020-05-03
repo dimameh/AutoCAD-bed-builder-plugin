@@ -48,10 +48,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.showButton = new System.Windows.Forms.Button();
+            this.picture = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -296,7 +299,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(172, 295);
+            this.cancelButton.Location = new System.Drawing.Point(68, 295);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(98, 29);
             this.cancelButton.TabIndex = 6;
@@ -304,11 +307,32 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // showButton
+            // 
+            this.showButton.Location = new System.Drawing.Point(172, 295);
+            this.showButton.Name = "showButton";
+            this.showButton.Size = new System.Drawing.Size(98, 29);
+            this.showButton.TabIndex = 8;
+            this.showButton.Text = "Показать";
+            this.showButton.UseVisualStyleBackColor = true;
+            this.showButton.Click += new System.EventHandler(this.showButton_Click);
+            // 
+            // picture
+            // 
+            this.picture.BackColor = System.Drawing.Color.White;
+            this.picture.Location = new System.Drawing.Point(381, 13);
+            this.picture.Name = "picture";
+            this.picture.Size = new System.Drawing.Size(324, 311);
+            this.picture.TabIndex = 9;
+            this.picture.TabStop = false;
+            // 
             // ModelParametersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 330);
+            this.ClientSize = new System.Drawing.Size(714, 332);
+            this.Controls.Add(this.picture);
+            this.Controls.Add(this.showButton);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.groupBox4);
@@ -317,7 +341,7 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ModelParametersForm";
-            this.Text = "Bed Builder";
+            this.Text = "Кровать";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -326,6 +350,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -356,5 +381,7 @@
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.Button okButton;
     private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button showButton;
+        private System.Windows.Forms.PictureBox picture;
     }
 }
