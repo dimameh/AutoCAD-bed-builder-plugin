@@ -131,3 +131,13 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+/.vs/Mekh/v16/TestStore/0/000.testlog
+/.vs/Mekh/v16/TestStore/0/testlog.manifest
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/AutocadPlugin.UnitTests/Properties/AssemblyInfo.cs
+/AutocadPlugin/.vs/AutocadTestPlugin/DesignTimeBuild/.dtbcache
+/AutocadPlugin/.vs/AutocadTestPlugin/v16/Server/sqlite3/db.lock
+/AutocadPlugin/.vs/AutocadTestPlugin/v16/Server/sqlite3/storage.ide
+/AutocadPlugin/.vs/AutocadTestPlugin/v16/TestStore/0/000-0000.testlog
+/AutocadPlugin/.vs/AutocadTestPlugin/v16/TestStore/0/testlog.manifest
