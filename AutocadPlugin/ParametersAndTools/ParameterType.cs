@@ -41,12 +41,12 @@
         HeadboardThickness,
 
         /// <summary>
-        /// Высота человека
+        ///     Высота человека
         /// </summary>
         PersonsHeight,
 
         /// <summary>
-        /// Количество спальных мест
+        ///     Количество спальных мест
         /// </summary>
         BerthCount
     }

@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using ParametersAndTools;
 
-namespace AutocadPlugin.UnitTests 
+namespace AutocadPlugin.UnitTests
 {
     [TestFixture]
     [Description("Модульные тесты класса Parameter")]
-    class ParameterTests 
+    internal class ParameterTests
     {
         [Test]
         [Description("Тест функции SetAverageValue")]
-        public void SetAverageValueTest() 
+        public void SetAverageValueTest()
         {
             var parameter1 = new Parameter(0, 2);
             var parameter2 = new Parameter(100, 800);
@@ -29,29 +27,26 @@ namespace AutocadPlugin.UnitTests
 
         [Test]
         [Description("Тест свойства Value")]
-        public void SetParameterValueTest() 
+        public void SetParameterValueTest()
         {
             var parameter1 = new Parameter(0, 2);
+
+            //Значение на допустимом интервале
+            Assert.DoesNotThrow(() => { parameter1.Value = 1; });
+        }
+
+        [Test]
+        [Description("Тест свойства Value")]
+        public void SetParameterValueOutOfRangeTest()
+        {
             var parameter2 = new Parameter(100, 800);
             var parameter3 = new Parameter(0, 1);
 
-            //Значение на допустимом интервале
-            Assert.DoesNotThrow(() =>
-            {
-                parameter1.Value = 1;
-            });
-            
             //Значение ниже допустимого интервала
-            Assert.Throws<ArgumentOutOfRangeException>(() =>
-            {
-                parameter2.Value = 1;
-            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { parameter2.Value = 1; });
 
             //Значение выше допустимого интервала
-            Assert.Throws<ArgumentOutOfRangeException>(() => 
-            {
-                parameter3.Value = 8;
-            });
+            Assert.Throws<ArgumentOutOfRangeException>(() => { parameter3.Value = 8; });
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AutocadPlugin.Drawer.Points;
 using ParametersAndTools;
@@ -22,23 +19,23 @@ namespace AutocadPlugin.Drawer
 
         private List<Point3D> _legsPoints;
 
-        private PictureBox _picture;
+        private readonly PictureBox _picture;
 
-        private double size = 0.5;
+        private const double Size = 0.5;
 
-        private float L;
-        private float W;
-        private float H;
-        private float Tb;
-        private float Lh;
-        private float Hb;
-        private float D;
+        private float L { get; set; }
+        private float W { get; set; }
+        private float H { get; set; }
+        private float Tb { get; set; }
+        private float Lh { get; set; }
+        private float Hb { get; set; }
+        private float D { get; set; }
 
         public ModelDrawer(Parameters parameters, PictureBox picture)
         {
             _picture = picture;
 
-            Graphics gCLr = Graphics.FromHwnd(_picture.Handle);
+            var gCLr = Graphics.FromHwnd(_picture.Handle);
             gCLr.Clear(Color.White);
             gCLr.Dispose();
 
@@ -48,33 +45,46 @@ namespace AutocadPlugin.Drawer
 
         private void InitParameters(Parameters parameters)
         {
-            H = Convert.ToSingle(parameters.ModelParameters[ParameterType.MainPartHeight].Value);
-            W = Convert.ToSingle(parameters.ModelParameters[ParameterType.MainPartWidth].Value);
-            L = Convert.ToSingle(parameters.ModelParameters[ParameterType.MainPartLength].Value);
-            D = Convert.ToSingle(parameters.ModelParameters[ParameterType.LegsDiameter].Value);
-            Lh = Convert.ToSingle(parameters.ModelParameters[ParameterType.LegsHeight].Value);
-            Hb = Convert.ToSingle(parameters.ModelParameters[ParameterType.HeadboardHeight].Value);
-            Tb = Convert.ToSingle(parameters.ModelParameters[ParameterType.HeadboardThickness].Value);
+            H = Convert.ToSingle(parameters.ModelParameters[ParameterType.MainPartHeight]
+                .Value);
+
+            W = Convert.ToSingle(parameters.ModelParameters[ParameterType.MainPartWidth]
+                .Value);
+
+            L = Convert.ToSingle(parameters.ModelParameters[ParameterType.MainPartLength]
+                .Value);
+
+            D = Convert.ToSingle(parameters.ModelParameters[ParameterType.LegsDiameter]
+                .Value);
+
+            Lh = Convert.ToSingle(parameters.ModelParameters[ParameterType.LegsHeight]
+                .Value);
+
+            Hb = Convert.ToSingle(parameters
+                .ModelParameters[ParameterType.HeadboardHeight].Value);
+
+            Tb = Convert.ToSingle(parameters
+                .ModelParameters[ParameterType.HeadboardThickness].Value);
         }
 
 
         private List<Point2D> Calculate2D(List<Point3D> pointList)
         {
-            int a = 101;
-            int b = 100;
+            var a = 101;
+            var b = 100;
 
-            List<Point2D> resultPoints = new List<Point2D>();
+            var resultPoints = new List<Point2D>();
 
             foreach (var point in pointList)
             {
-                double x = (-point.z * Convert.ToSingle(Math.Sin(a)) +
-                            point.x * Convert.ToSingle(Math.Cos(a)))* size;
+                var x = (-point.Z * Convert.ToSingle(Math.Sin(a)) +
+                         point.X * Convert.ToSingle(Math.Cos(a))) * Size;
 
-                double y =
-                    (-(point.z * Convert.ToSingle(Math.Cos(a)) +
-                       point.x * Convert.ToSingle(Math.Sin(a))) *
+                var y =
+                    (-(point.Z * Convert.ToSingle(Math.Cos(a)) +
+                       point.X * Convert.ToSingle(Math.Sin(a))) *
                      Convert.ToSingle(Math.Sin(b)) +
-                     point.y * Convert.ToSingle(Math.Cos(b))) * size;
+                     point.Y * Convert.ToSingle(Math.Cos(b))) * Size;
 
 
                 resultPoints.Add(new Point2D(Convert.ToSingle(x), Convert.ToSingle(y)));
@@ -151,7 +161,7 @@ namespace AutocadPlugin.Drawer
 
                 //нижнее правое
                 new Point3D(L, -Lh, 0),
-                new Point3D(L, -Lh + Hb, 0),
+                new Point3D(L, -Lh + Hb, 0)
             };
 
             _legsPoints = new List<Point3D>
@@ -200,48 +210,47 @@ namespace AutocadPlugin.Drawer
                 new Point3D(D / 2 + D, -Lh, D / 2 + D + W - 2 * D),
                 new Point3D(D / 2 + D, 0, D / 2 + D + W - 2 * D),
                 new Point3D(D / 2, 0, D / 2 + D + W - 2 * D),
-                new Point3D(D / 2, -Lh, D / 2 + D + W - 2 * D),
+                new Point3D(D / 2, -Lh, D / 2 + D + W - 2 * D)
             };
         }
 
-        private void Draw2d()
+        private void Draw()
         {
-            using (Graphics g = Graphics.FromHwnd(_picture.Handle))
+            using (var g = Graphics.FromHwnd(_picture.Handle))
             {
-                Pen pen = new Pen(Color.Black, 1);
+                var pen = new Pen(Color.Black, 1);
 
-                for (int i = 0; i < _points2d.Count - 1; i++)
+                for (var i = 0; i < _points2d.Count - 1; i++)
                 {
-                    g.DrawLine(pen, _points2d[i].X + _startPoint.x,
-                        _points2d[i].Y + _startPoint.y, _points2d[i + 1].X + _startPoint.x,
-                        _points2d[i + 1].Y + _startPoint.y);
+                    g.DrawLine(pen, _points2d[i].X + _startPoint.X,
+                        _points2d[i].Y + _startPoint.Y,
+                        _points2d[i + 1].X + _startPoint.X,
+                        _points2d[i + 1].Y + _startPoint.Y);
                 }
 
-                for (int i = 0; i < _legsPoints2d.Count / 2 - 1; i++)
+                for (var i = 0; i < _legsPoints2d.Count / 2 - 1; i++)
                 {
-                    g.DrawLine(pen, _legsPoints2d[i].X + _startPoint.x,
-                        _legsPoints2d[i].Y + _startPoint.y,
-                        _legsPoints2d[i + 1].X + _startPoint.x,
-                        _legsPoints2d[i + 1].Y + _startPoint.y);
+                    g.DrawLine(pen, _legsPoints2d[i].X + _startPoint.X,
+                        _legsPoints2d[i].Y + _startPoint.Y,
+                        _legsPoints2d[i + 1].X + _startPoint.X,
+                        _legsPoints2d[i + 1].Y + _startPoint.Y);
                 }
 
-                for (int i = _legsPoints2d.Count / 2; i < _legsPoints2d.Count - 1; i++)
+                for (var i = _legsPoints2d.Count / 2; i < _legsPoints2d.Count - 1; i++)
                 {
-                    g.DrawLine(pen, _legsPoints2d[i].X + _startPoint.x,
-                        _legsPoints2d[i].Y + _startPoint.y,
-                        _legsPoints2d[i + 1].X + _startPoint.x,
-                        _legsPoints2d[i + 1].Y + _startPoint.y);
+                    g.DrawLine(pen, _legsPoints2d[i].X + _startPoint.X,
+                        _legsPoints2d[i].Y + _startPoint.Y,
+                        _legsPoints2d[i + 1].X + _startPoint.X,
+                        _legsPoints2d[i + 1].Y + _startPoint.Y);
                 }
             }
         }
-        
+
         public void DrawPicture()
         {
             _points2d = Calculate2D(_points);
             _legsPoints2d = Calculate2D(_legsPoints);
-            Draw2d();
+            Draw();
         }
-
     }
 }
-

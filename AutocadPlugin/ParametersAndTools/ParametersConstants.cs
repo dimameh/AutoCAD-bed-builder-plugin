@@ -104,12 +104,12 @@
         ///     Требуемая ширина кровати на одно спальное место
         /// </summary>
         public const double BerthCountMax = 2;
-        
+
         /// <summary>
         ///     Начальное значение количества спальных мест
         /// </summary>
         public const double BerthAvg = 1;
-        
+
         /// <summary>
         ///     Требуемая ширина кровати на одно спальное место
         /// </summary>

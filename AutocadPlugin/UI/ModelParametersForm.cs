@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -114,7 +113,8 @@ namespace UI
 
             foreach (var key in _fields.Keys)
             {
-                _fields[key].Text = _parameters.ModelParameters[key].Value.ToString(CultureInfo.InvariantCulture);
+                _fields[key].Text = _parameters.ModelParameters[key].Value
+                    .ToString(CultureInfo.InvariantCulture);
             }
 
             _personsHeightTextBox.TextChanged += PersonsHeightTextBox_TextChanged;
@@ -236,18 +236,23 @@ namespace UI
         }
 
 
-        private void showButton_Click(object sender, EventArgs e) 
+        private void showButton_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 FillParameters();
                 _parameters.ValidateParameters();
-            } catch (ArgumentOutOfRangeException exception) {
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
                 MessageBox.Show(
                     "Введенные параметры выходят за границы доступного диапазона значений",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
-            } catch (ArgumentException argumentException) {
+            }
+            catch (ArgumentException argumentException)
+            {
                 MessageBox.Show(argumentException.Message);
                 return;
             }
@@ -305,6 +310,5 @@ namespace UI
         }
 
         #endregion
-
     }
 }
