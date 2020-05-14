@@ -130,7 +130,6 @@
     <Compile Include="ModelController\ModelBuilder.cs" />
     <Compile Include="ParametersAndTools\Parameter.cs" />
     <Compile Include="ParametersAndTools\Parameters.cs" />
-    <Compile Include="ParametersAndTools\ParametersConstants.cs" />
     <Compile Include="ParametersAndTools\ParameterType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -48,33 +48,15 @@ namespace UI
         {
             _parameters = new Parameters();
 
-            var mainPartHeight = new Parameter(ParametersConstants.MainPartHeightMin,
-                ParametersConstants.MainPartHeightMax);
-
-            var mainPartWidth = new Parameter(ParametersConstants.MainPartWidthMin,
-                ParametersConstants.MainPartWidthMax);
-
-            var mainPartLength = new Parameter(ParametersConstants.MainPartLengthMin,
-                ParametersConstants.MainPartLengthMax);
-
-            var legsDiameter = new Parameter(ParametersConstants.LegsDiameterMin,
-                ParametersConstants.LegsDiameterMax);
-
-            var legsHeight = new Parameter(ParametersConstants.LegsHeightMin,
-                ParametersConstants.LegsHeightMax);
-
-            var headboardHeight = new Parameter(ParametersConstants.HeadboardHeightMin,
-                ParametersConstants.HeadboardHeightMax);
-
-            var headboardThickness =
-                new Parameter(ParametersConstants.HeadboardThicknessMin,
-                    ParametersConstants.HeadboardThicknessMax);
-
-            var personsHeight = new Parameter(ParametersConstants.PersonsHeightMin,
-                ParametersConstants.PersonsHeightMax);
-
-            var berthCount = new Parameter(ParametersConstants.BerthCountMin,
-                ParametersConstants.BerthCountMax);
+            var mainPartHeight = new Parameter(10, 30);
+            var mainPartWidth = new Parameter(60, 230);
+            var mainPartLength = new Parameter(120, 230);
+            var legsDiameter = new Parameter(5, 10);
+            var legsHeight = new Parameter(10, 30);
+            var headboardHeight = new Parameter(60, 100);
+            var headboardThickness = new Parameter(5, 30);
+            var personsHeight = new Parameter(90, 200);
+            var berthCount = new Parameter(1, 2);
 
             _parameters.ModelParameters.Add(ParameterType.MainPartHeight, mainPartHeight);
             _parameters.ModelParameters.Add(ParameterType.MainPartWidth, mainPartWidth);
@@ -180,9 +162,7 @@ namespace UI
 
             SaveLastTextBoxValue(_mainPartLengthTextBox);
             _fields[ParameterType.MainPartLength].Text =
-                (double.Parse(textBox.Text) +
-                 ParametersConstants.PersonsHeightBedLengthDiff)
-                .ToString(CultureInfo.InvariantCulture);
+                (double.Parse(textBox.Text) + 30).ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -198,8 +178,7 @@ namespace UI
 
             SaveLastTextBoxValue(_mainPartWidthTextBox);
             _fields[ParameterType.MainPartWidth].Text =
-                (double.Parse(textBox.Text) * ParametersConstants.BedWidthPerBerth)
-                .ToString(CultureInfo.InvariantCulture);
+                (double.Parse(textBox.Text) * 60).ToString(CultureInfo.InvariantCulture);
         }
 
         #region События кнопок
@@ -293,8 +272,7 @@ namespace UI
                 e.Handled = true;
             }
         }
-
-        private void DoubleTextBox_Leave(object sender, EventArgs e)
+        private void DoubleTextBox_Validated(object sender, EventArgs e)
         {
             var textBox = sender as TextBox;
             try

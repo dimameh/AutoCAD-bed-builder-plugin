@@ -24,6 +24,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._mainPartHeightTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,11 +51,13 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.showButton = new System.Windows.Forms.Button();
             this.picture = new System.Windows.Forms.PictureBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -80,7 +83,7 @@
             this._mainPartHeightTextBox.Size = new System.Drawing.Size(100, 22);
             this._mainPartHeightTextBox.TabIndex = 4;
             this._mainPartHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDouble_KeyPress);
-            this._mainPartHeightTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Leave);
+            this._mainPartHeightTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Validated);
             this._mainPartHeightTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBox_PreviewKeyDown);
             // 
             // label3
@@ -100,7 +103,7 @@
             this._mainPartWidthTextBox.Size = new System.Drawing.Size(100, 22);
             this._mainPartWidthTextBox.TabIndex = 2;
             this._mainPartWidthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDouble_KeyPress);
-            this._mainPartWidthTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Leave);
+            this._mainPartWidthTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Validated);
             this._mainPartWidthTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBox_PreviewKeyDown);
             // 
             // label2
@@ -120,7 +123,7 @@
             this._mainPartLengthTextBox.Size = new System.Drawing.Size(100, 22);
             this._mainPartLengthTextBox.TabIndex = 0;
             this._mainPartLengthTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDouble_KeyPress);
-            this._mainPartLengthTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Leave);
+            this._mainPartLengthTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Validated);
             this._mainPartLengthTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBox_PreviewKeyDown);
             // 
             // label1
@@ -153,7 +156,7 @@
             this._legsHeightTextBox.Size = new System.Drawing.Size(100, 22);
             this._legsHeightTextBox.TabIndex = 8;
             this._legsHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDouble_KeyPress);
-            this._legsHeightTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Leave);
+            this._legsHeightTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Validated);
             this._legsHeightTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBox_PreviewKeyDown);
             // 
             // label5
@@ -173,7 +176,7 @@
             this._legsDiameterTextBox.Size = new System.Drawing.Size(100, 22);
             this._legsDiameterTextBox.TabIndex = 6;
             this._legsDiameterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDouble_KeyPress);
-            this._legsDiameterTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Leave);
+            this._legsDiameterTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Validated);
             this._legsDiameterTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBox_PreviewKeyDown);
             // 
             // label4
@@ -206,7 +209,7 @@
             this._headboardThicknessTextBox.Size = new System.Drawing.Size(100, 22);
             this._headboardThicknessTextBox.TabIndex = 12;
             this._headboardThicknessTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDouble_KeyPress);
-            this._headboardThicknessTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Leave);
+            this._headboardThicknessTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Validated);
             this._headboardThicknessTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBox_PreviewKeyDown);
             // 
             // label7
@@ -226,7 +229,7 @@
             this._headboardHeightTextBox.Size = new System.Drawing.Size(100, 22);
             this._headboardHeightTextBox.TabIndex = 10;
             this._headboardHeightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxDouble_KeyPress);
-            this._headboardHeightTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Leave);
+            this._headboardHeightTextBox.Leave += new System.EventHandler(this.DoubleTextBox_Validated);
             this._headboardHeightTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.TextBox_PreviewKeyDown);
             // 
             // label6
@@ -326,6 +329,10 @@
             this.picture.TabIndex = 9;
             this.picture.TabStop = false;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // ModelParametersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -351,6 +358,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -383,5 +391,6 @@
     private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button showButton;
         private System.Windows.Forms.PictureBox picture;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

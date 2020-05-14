@@ -22,11 +22,11 @@ namespace ParametersAndTools
             {
                 if (key == ParameterType.BerthCount)
                 {
-                    ModelParameters[key].Value = ParametersConstants.BerthAvg;
+                    ModelParameters[key].Value = 1;
                 }
                 else if (key == ParameterType.PersonsHeight)
                 {
-                    ModelParameters[key].Value = ParametersConstants.PersonsHeightAvg;
+                    ModelParameters[key].Value = 170;
                 }
                 else
                 {
@@ -48,16 +48,14 @@ namespace ParametersAndTools
                         "Не хватает одного из параметров: " + parameterType);
                 }
 
-                if (ModelParameters[ParameterType.BerthCount].Value *
-                    ParametersConstants.BedWidthPerBerth >
+                if (ModelParameters[ParameterType.BerthCount].Value * 60 >
                     ModelParameters[ParameterType.MainPartWidth].Value)
                 {
                     throw new ArgumentException(
                         "Ширина кровати слишком мала для указанного количества спальных мест");
                 }
 
-                if (ModelParameters[ParameterType.PersonsHeight].Value +
-                    ParametersConstants.PersonsHeightBedLengthDiff >
+                if (ModelParameters[ParameterType.PersonsHeight].Value + 30 >
                     ModelParameters[ParameterType.MainPartLength].Value)
                 {
                     throw new ArgumentException(

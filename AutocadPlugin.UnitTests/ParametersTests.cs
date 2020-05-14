@@ -16,33 +16,15 @@ namespace AutocadPlugin.UnitTests
         {
             _parameters = new Parameters();
 
-            var mainPartHeight = new Parameter(ParametersConstants.MainPartHeightMin,
-                ParametersConstants.MainPartHeightMax);
-
-            var mainPartWidth = new Parameter(ParametersConstants.MainPartWidthMin,
-                ParametersConstants.MainPartWidthMax);
-
-            var mainPartLength = new Parameter(ParametersConstants.MainPartLengthMin,
-                ParametersConstants.MainPartLengthMax);
-
-            var legsDiameter = new Parameter(ParametersConstants.LegsDiameterMin,
-                ParametersConstants.LegsDiameterMax);
-
-            var legsHeight = new Parameter(ParametersConstants.LegsHeightMin,
-                ParametersConstants.LegsHeightMax);
-
-            var headboardHeight = new Parameter(ParametersConstants.HeadboardHeightMin,
-                ParametersConstants.HeadboardHeightMax);
-
-            var headboardThickness =
-                new Parameter(ParametersConstants.HeadboardThicknessMin,
-                    ParametersConstants.HeadboardThicknessMax);
-
-            var personsHeight = new Parameter(ParametersConstants.PersonsHeightMin,
-                ParametersConstants.PersonsHeightMax);
-
-            var berthCount = new Parameter(ParametersConstants.BerthCountMin,
-                ParametersConstants.BerthCountMax);
+            var mainPartHeight = new Parameter(10, 30);
+            var mainPartWidth = new Parameter(60, 230);
+            var mainPartLength = new Parameter(120, 230);
+            var legsDiameter = new Parameter(5, 10);
+            var legsHeight = new Parameter(10, 30);
+            var headboardHeight = new Parameter(60, 100);
+            var headboardThickness = new Parameter(5, 30);
+            var personsHeight = new Parameter(90, 200);
+            var berthCount = new Parameter(1, 2);
 
             _parameters.ModelParameters.Add(ParameterType.MainPartHeight, mainPartHeight);
             _parameters.ModelParameters.Add(ParameterType.MainPartWidth, mainPartWidth);
@@ -70,22 +52,15 @@ namespace AutocadPlugin.UnitTests
 
             var averageParameters = new List<double>
             {
-                (ParametersConstants.MainPartHeightMin +
-                 ParametersConstants.MainPartHeightMax) / 2,
-                (ParametersConstants.MainPartWidthMin +
-                 ParametersConstants.MainPartWidthMax) / 2,
-                (ParametersConstants.MainPartLengthMin +
-                 ParametersConstants.MainPartLengthMax) / 2,
-                (ParametersConstants.LegsDiameterMin +
-                 ParametersConstants.LegsDiameterMax) / 2,
-                (ParametersConstants.LegsHeightMin +
-                 ParametersConstants.LegsHeightMax) / 2,
-                (ParametersConstants.HeadboardHeightMin +
-                 ParametersConstants.HeadboardHeightMax) / 2,
-                (ParametersConstants.HeadboardThicknessMin +
-                 ParametersConstants.HeadboardThicknessMax) / 2,
-                ParametersConstants.PersonsHeightAvg,
-                ParametersConstants.BerthAvg
+                (10 + 30d) / 2,
+                (60 + 230d) / 2,
+                (120 + 230d) / 2,
+                (5 + 10d) / 2,
+                (10 + 30d) / 2,
+                (60 + 100d) / 2,
+                (5 + 30d) / 2,
+                170,
+                1
             };
 
             Assert.AreEqual(averageParameters[0],
@@ -141,8 +116,7 @@ namespace AutocadPlugin.UnitTests
         {
             _parameters.SetAverageParameters();
 
-            _parameters.ModelParameters[ParameterType.MainPartWidth].Value =
-                ParametersConstants.MainPartWidthMin;
+            _parameters.ModelParameters[ParameterType.MainPartWidth].Value = 60;
 
             Assert.Throws<ArgumentException>(() => { _parameters.ValidateParameters(); });
         }
@@ -154,8 +128,7 @@ namespace AutocadPlugin.UnitTests
         {
             _parameters.SetAverageParameters();
 
-            _parameters.ModelParameters[ParameterType.MainPartLength].Value =
-                ParametersConstants.MainPartLengthMin;
+            _parameters.ModelParameters[ParameterType.MainPartLength].Value = 120;
 
             Assert.Throws<ArgumentException>(() => { _parameters.ValidateParameters(); });
         }
